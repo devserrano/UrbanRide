@@ -74,18 +74,25 @@ app.put('/api/vehiculos/:id', async (req, res) => {
     try {
 
         const { id } = req.params;
-        const { unidad, tipo, estado } = req.body;
+
+        const { estado } = req.body;
 
         const resultado = await pool.query(
+
             `
+
             UPDATE vehiculos
-            SET unidad = $1,
-                tipo = $2,
-                estado = $3
-            WHERE id = $4
+
+            SET estado = $1
+
+            WHERE id = $2
+
             RETURNING *
+
             `,
-            [unidad, tipo, estado, id]
+
+            [estado, id]
+
         );
 
         res.json(resultado.rows[0]);
@@ -95,7 +102,9 @@ app.put('/api/vehiculos/:id', async (req, res) => {
         console.error(error);
 
         res.status(500).json({
-            mensaje: 'Error al actualizar vehículo'
+
+            mensaje: 'Error al actualizar estado'
+
         });
 
     }

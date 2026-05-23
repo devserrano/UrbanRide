@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bicitaxi Checker</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+ <div class="layout">
+
+    <aside class="sidebar">
+
+        <h2>Bicitaxi</h2>
+
+        <button onclick="mostrarSeccion('dashboard')">
+            Dashboard
+        </button>
+
+        <button onclick="mostrarSeccion('vehiculos')">
+            Vehículos
+        </button>
+
+        <button onclick="mostrarSeccion('inspecciones')">
+            Inspecciones
+        </button>
+
+        <button onclick="mostrarSeccion('mantenimiento')">
+            Mantenimiento
+        </button>
+
+    </aside>
+
+    <main class="contenido">
+
+        <section id="dashboard" class="seccion">
+
+            <h1>Dashboard</h1>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Total Vehículos</h3>
+                    <p id="totalVehiculos">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Activos</h3>
+                    <p id="vehiculosActivos">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Mantenimiento</h3>
+                    <p id="vehiculosMantenimiento">0</p>
+                </div>
+                <div class="card">
+                 <h3>Descompuestos</h3>
+                 <p id="vehiculosDescompuestos">0</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="vehiculos" class="seccion">
+
+            <div class="encabezado">
+
+                <h1>Inventario de Vehículos</h1>
+
+                <button id="btnAgregar">
+                    + Agregar Vehículo
+                </button>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Unidad</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="contenedorVehiculos">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section id="inspecciones" class="seccion oculto">
+
+            <h1>Inspecciones</h1>
+
+            <p>
+                Aquí irán las inspecciones diarias.
+            </p>
+
+        </section>
+
+        <section id="mantenimiento" class="seccion oculto">
+
+            <h1>Mantenimiento</h1>
+
+            <p>
+                Aquí irá el historial de mantenimiento.
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="modalEstado" class="modal oculto" data-id="">
+
+    <div class="modal-contenido">
+
+        <h2>Actualizar estado</h2>
+
+        <select id="selectEstado">
+            <option value="Activo">Activo</option>
+            <option value="En mantenimiento">En mantenimiento</option>
+            <option value="Descompuesto">Descompuesto</option>
+        </select>
+
+        <div class="modal-botones">
+            <button id="btnGuardarEstado">Guardar</button>
+            <button id="btnCancelarEstado">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
