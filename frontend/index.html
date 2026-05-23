@@ -149,6 +149,37 @@
 
 </div>
 
+<div id="modalAgregar" class="modal oculto">
+
+    <div class="modal-contenido">
+
+        <h2>Agregar vehículo</h2>
+
+        <label>Unidad</label>
+        <input id="inputUnidad" type="text" placeholder="Ejemplo: BT-04">
+
+        <label>Tipo</label>
+        <select id="selectTipo">
+            <option value="Bicitaxi">Bicitaxi</option>
+            <option value="Mototaxi">Mototaxi</option>
+        </select>
+
+        <label>Estado</label>
+        <select id="selectEstadoAgregar">
+            <option value="Activo">Activo</option>
+            <option value="En mantenimiento">En mantenimiento</option>
+            <option value="Descompuesto">Descompuesto</option>
+        </select>
+
+        <div class="modal-botones">
+            <button id="btnGuardarAgregar">Guardar</button>
+            <button id="btnCancelarAgregar">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>
+
 <script src="app.js"></script>
 
 </body>

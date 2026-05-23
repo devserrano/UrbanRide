@@ -278,6 +278,46 @@ tr:hover {
     margin-bottom: 20px;
 }
 
+.modal-contenido label {
+
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #111827;
+}
+
+.modal-contenido input,
+.modal-contenido select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    background-color: #f9fafb;
+
+    transition: 0.2s;
+}
+
+.modal-contenido input:focus,
+.modal-contenido select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    background-color: white;
+}
+
 .modal-contenido select {
     width: 100%;
     padding: 12px;

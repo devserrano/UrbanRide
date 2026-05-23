@@ -101,54 +101,11 @@ function editarVehiculo(id) {
 
 }
 
-async function agregarVehiculo() {
+function agregarVehiculo() {
 
-    const unidad = prompt(
-        'Ingresa la unidad:'
-    );
+    const modal = document.getElementById('modalAgregar');
 
-    const tipo = prompt(
-        'Ingresa el tipo:'
-    );
-
-    const estado = prompt(
-        'Ingresa el estado:'
-    );
-
-    if (!unidad || !tipo || !estado) {
-
-        alert('Todos los campos son obligatorios');
-
-        return;
-    }
-
-    try {
-
-        await fetch(
-            'http://localhost:3000/api/vehiculos',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    unidad,
-                    tipo,
-                    estado
-                })
-            }
-        );
-
-        obtenerVehiculos();
-
-    } catch (error) {
-
-        console.error(
-            'Error al agregar vehículo:',
-            error
-        );
-
-    }
+    modal.classList.remove('oculto');
 
 }
 
@@ -192,6 +149,9 @@ const btnGuardarEstado = document.getElementById(
     'btnGuardarEstado'
 );
 
+const btnGuardarAgregar = document.getElementById('btnGuardarAgregar');
+const btnCancelarAgregar = document.getElementById('btnCancelarAgregar');
+
 btnCancelarEstado.addEventListener('click', () => {
 
     const modal = document.getElementById('modalEstado');
@@ -200,6 +160,68 @@ btnCancelarEstado.addEventListener('click', () => {
     modal.classList.add('oculto');
 
 });
+
+
+
+
+
+
+
+
+btnCancelarAgregar.addEventListener('click', () => {
+
+    const modal = document.getElementById('modalAgregar');
+
+    modal.classList.add('oculto');
+
+});
+
+btnGuardarAgregar.addEventListener('click', async () => {
+
+    const unidad = document.getElementById('inputUnidad').value;
+    const tipo = document.getElementById('selectTipo').value;
+    const estado = document.getElementById('selectEstadoAgregar').value;
+
+    if (!unidad) {
+        alert('La unidad es obligatoria');
+        return;
+    }
+
+    try {
+
+        await fetch('http://localhost:3000/api/vehiculos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                unidad,
+                tipo,
+                estado
+            })
+        });
+
+        document.getElementById('inputUnidad').value = '';
+
+        document
+            .getElementById('modalAgregar')
+            .classList.add('oculto');
+
+        obtenerVehiculos();
+
+    } catch (error) {
+
+        console.error('Error al agregar vehículo:', error);
+
+    }
+
+});
+
+
+
+
+
+
 
 btnGuardarEstado.addEventListener('click', async () => {
 
