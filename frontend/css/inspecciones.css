@@ -1,0 +1,26 @@
+/* RESULTADOS INSPECCIONES */
+
+.resultado {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.aprobado {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.requiere-mantenimiento {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.no-aprobado,
+.rechazado {
+    background-color: #fee2e2;
+    color: #991b1b;
+}

@@ -2,13 +2,29 @@
 <html lang="es">
 
 <head>
+    
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bicitaxi Checker</title>
 
-    <link rel="stylesheet" href="styles.css">
+                <link rel="stylesheet" href="css/styles.css">
+                <link rel="stylesheet" href="css/sidebar.css">
+                <link rel="stylesheet" href="css/topbar.css">
+                <link rel="stylesheet" href="css/buttons.css">
+                <link rel="stylesheet" href="css/dashboard.css">
+                <link rel="stylesheet" href="css/vehiculos.css">
+                <link rel="stylesheet" href="css/inspecciones.css">
+                <link rel="stylesheet" href="css/mantenimiento.css">
+                <link rel="stylesheet" href="css/modal.css">
+                <link rel="stylesheet" href="css/responsive.css">
+
+         
+         
+            <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -20,25 +36,48 @@
 
         <h2>Bicitaxi</h2>
 
-        <button onclick="mostrarSeccion('dashboard')">
-            Dashboard
-        </button>
+                <button data-seccion="dashboard" onclick="mostrarSeccion('dashboard')">
+    <i class="fa-solid fa-chart-line"></i>
+    Dashboard
+</button>
 
-        <button onclick="mostrarSeccion('vehiculos')">
-            Vehículos
-        </button>
+            <button data-seccion="vehiculos" onclick="mostrarSeccion('vehiculos')">
+                <i class="fa-solid fa-bicycle"></i>
+                Vehículos
+            </button>
 
-        <button onclick="mostrarSeccion('inspecciones')">
-            Inspecciones
-        </button>
+            <button data-seccion="inspecciones" onclick="mostrarSeccion('inspecciones')">
+                <i class="fa-solid fa-clipboard-check"></i>
+                Inspecciones
+            </button>
 
-        <button onclick="mostrarSeccion('mantenimiento')">
-            Mantenimiento
-        </button>
+            <button data-seccion="mantenimiento" onclick="mostrarSeccion('mantenimiento')">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Mantenimiento
+            </button>
 
     </aside>
 
     <main class="contenido">
+        
+
+        <header class="topbar">
+
+    <div>
+        <h2>Bicitaxi Command</h2>
+        <p>Gestión operativa de unidades</p>
+    </div>
+
+    <div class="topbar-actions">
+        <span class="empresa">Cooperativa Bicitaxi</span>
+
+        <button class="btn-logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+    </div>
+
+        </header>
 
         <section id="dashboard" class="seccion">
 
@@ -87,11 +126,14 @@
                 <thead>
 
                     <tr>
-                        <th>ID</th>
-                        <th>Unidad</th>
-                        <th>Tipo</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
+                        
+                        <tr>
+                            <th>Unidad</th>
+                            <th>Operador</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
                     </tr>
 
                 </thead>
@@ -103,37 +145,124 @@
             </table>
 
         </section>
+            <section id="inspecciones" class="seccion oculto">
 
-        <section id="inspecciones" class="seccion oculto">
+                <div class="encabezado">
 
-            <h1>Inspecciones</h1>
+                    <h1>Inspecciones</h1>
 
-            <p>
-                Aquí irán las inspecciones diarias.
-            </p>
+                    <button id="btnAgregarInspeccion">
+                        + Nueva Inspección
+                    </button>
 
-        </section>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                           <th>Unidad</th>
+
+                            <th>Fecha y hora</th>
+
+                            <th>Resultado</th>
+
+                            <th>Observaciones</th>
+
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="contenedorInspecciones">
+                    </tbody>
+
+                </table>
+
+            </section>
 
         <section id="mantenimiento" class="seccion oculto">
 
+    <div class="encabezado">
+
+        <div>
             <h1>Mantenimiento</h1>
+            <p>Gestión de servicios y reparaciones</p>
+        </div>
 
-            <p>
-                Aquí irá el historial de mantenimiento.
-            </p>
+        <button id="btnAgregarMantenimiento">
+            + Registrar servicio
+        </button>
 
-        </section>
+    </div>
+
+    <div class="cards-mantenimiento">
+
+        <div class="mini-card">
+            <h3>Servicios</h3>
+            <p id="totalMantenimientos">0</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Pendientes</h3>
+            <p id="pendientesMantenimiento">0</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Finalizados</h3>
+            <p id="finalizadosMantenimiento">0</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Gasto Total</h3>
+            <p id="gastoTotal">$0</p>
+        </div>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Fecha</th>
+                <th>Unidad</th>
+                <th>Servicio</th>
+                <th>Costo</th>
+                <th>Estado</th>
+                <th>Observaciones</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="contenedorMantenimientos">
+
+        </tbody>
+
+    </table>
+
+</section>
 
     </main>
 
 </div>
 
+
 <div id="modalEstado" class="modal oculto" data-id="">
 
     <div class="modal-contenido">
 
-        <h2>Actualizar estado</h2>
+        <h2>Editar vehículo</h2>
 
+        <label>Operador</label>
+        <input 
+            id="inputOperadorEditar" 
+            type="text" 
+            placeholder="Nombre del operador"
+        >
+
+        <label>Estado</label>
         <select id="selectEstado">
             <option value="Activo">Activo</option>
             <option value="En mantenimiento">En mantenimiento</option>
@@ -149,6 +278,10 @@
 
 </div>
 
+
+
+
+
 <div id="modalAgregar" class="modal oculto">
 
     <div class="modal-contenido">
@@ -156,15 +289,21 @@
         <h2>Agregar vehículo</h2>
 
         <label>Unidad</label>
-        <input id="inputUnidad" type="text" placeholder="Ejemplo: BT-04">
+        <input 
+            id="inputUnidad" 
+            type="text" 
+            placeholder="Ejemplo: BT-04"
+        >
 
-        <label>Tipo</label>
-        <select id="selectTipo">
-            <option value="Bicitaxi">Bicitaxi</option>
-            <option value="Mototaxi">Mototaxi</option>
-        </select>
+        <label>Operador</label>
+        <input 
+            id="inputOperador" 
+            type="text" 
+            placeholder="Nombre del operador"
+        >
 
         <label>Estado</label>
+
         <select id="selectEstadoAgregar">
             <option value="Activo">Activo</option>
             <option value="En mantenimiento">En mantenimiento</option>
@@ -180,7 +319,114 @@
 
 </div>
 
+<div id="modalInspeccion" class="modal oculto">
+
+    <div class="modal-contenido">
+
+        <h2>Nueva inspección</h2>
+
+        <label>Unidad</label>
+        <select id="selectVehiculoInspeccion">
+        </select>
+
+        <label>Frenos</label>
+        <select id="selectFrenos">
+            <option value="Bien">Bien</option>
+            <option value="Regular">Regular</option>
+            <option value="Mal">Mal</option>
+        </select>
+
+        <label>Llantas</label>
+        <select id="selectLlantas">
+            <option value="Bien">Bien</option>
+            <option value="Regular">Regular</option>
+            <option value="Mal">Mal</option>
+        </select>
+
+        <label>Luces</label>
+        <select id="selectLuces">
+            <option value="Bien">Bien</option>
+            <option value="Regular">Regular</option>
+            <option value="Mal">Mal</option>
+        </select>
+
+        <label>Cadena</label>
+        <select id="selectCadena">
+            <option value="Bien">Bien</option>
+            <option value="Regular">Regular</option>
+            <option value="Mal">Mal</option>
+        </select>
+
+        <label>Resultado</label>
+        <select id="selectResultadoInspeccion">
+            <option value="Aprobado">Aprobado</option>
+            <option value="Requiere mantenimiento">Requiere mantenimiento</option>
+        </select>
+
+        <label>Observaciones</label>
+        <textarea id="inputObservaciones" placeholder="Describe alguna observación"></textarea>
+
+        <div class="modal-botones">
+            <button id="btnGuardarInspeccion">Guardar</button>
+            <button id="btnCancelarInspeccion">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="modalMantenimiento" class="modal oculto">
+
+    <div class="modal-contenido">
+
+        <h2>Registrar mantenimiento</h2>
+
+        <label>Unidad</label>
+        <select id="selectVehiculoMantenimiento">
+        </select>
+
+        <label>Servicio</label>
+        <select id="selectServicioMantenimiento">
+            <option value="Ajuste de frenos">Ajuste de frenos</option>
+            <option value="Cambio de llanta">Cambio de llanta</option>
+            <option value="Revisión de cadena">Revisión de cadena</option>
+            <option value="Servicio general">Servicio general</option>
+            <option value="Reparación eléctrica">Reparación eléctrica</option>
+        </select>
+
+        <label>Costo</label>
+        <input 
+            id="inputCostoMantenimiento" 
+            type="number" 
+            placeholder="Ejemplo: 250"
+        >
+
+        <label>Estado</label>
+        <select id="selectEstadoMantenimiento">
+            <option value="Pendiente">Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Finalizado">Finalizado</option>
+        </select>
+
+        <label>Observaciones</label>
+        <textarea 
+            id="inputObservacionesMantenimiento" 
+            placeholder="Describe el servicio realizado"
+        ></textarea>
+
+        <div class="modal-botones">
+            <button id="btnGuardarMantenimiento">Guardar</button>
+            <button id="btnCancelarMantenimiento">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>
+
 <script src="app.js"></script>
+<script src="js/vehiculos.js"></script>
+<script src="js/inspecciones.js"></script>
+<script src="js/mantenimiento.js"></script>
 
 </body>
 
