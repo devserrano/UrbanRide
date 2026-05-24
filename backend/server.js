@@ -399,6 +399,55 @@ app.get('/api/mantenimientos', async (req, res) => {
 
 });
 
+app.put('/api/mantenimientos/:id', async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const {
+            vehiculo_id,
+            servicio,
+            costo,
+            estado,
+            observaciones
+        } = req.body;
+
+        const resultado = await pool.query(
+            `
+            UPDATE mantenimientos
+            SET vehiculo_id = $1,
+                servicio = $2,
+                costo = $3,
+                estado = $4,
+                observaciones = $5
+            WHERE id = $6
+            RETURNING *
+            `,
+            [
+                vehiculo_id,
+                servicio,
+                costo,
+                estado,
+                observaciones,
+                id
+            ]
+        );
+
+        res.json(resultado.rows[0]);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: 'Error al actualizar mantenimiento'
+        });
+
+    }
+
+});
+
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);

@@ -1,14 +1,11 @@
-/* SIDEBAR */
-
 .sidebar {
     width: 250px;
     min-height: 100vh;
     background: #02152b;
-    padding: 28px 18px;
+    padding: 28px 22px;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .sidebar-top {
@@ -16,35 +13,33 @@
     flex-direction: column;
 }
 
-.sidebar-bottom {
-    margin-top: auto;
-}
-
 .sidebar h2 {
     color: white;
-    font-size: 28px;
-    margin-bottom: 40px;
+    font-size: 26px;
+    margin-bottom: 55px;
 }
 
 .sidebar button {
     width: 100%;
 
     background: transparent;
-    color: #cbd5e1;
+    color: #94a3b8;
 
     border: none;
-    padding: 14px 16px;
-    border-radius: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 
     cursor: pointer;
     transition: 0.2s;
 
     font-size: 15px;
-    margin-bottom: 10px;
+    font-weight: 600;
+
+    margin-bottom: 12px;
     text-align: left;
 }
 
@@ -54,15 +49,23 @@
 }
 
 .sidebar button i {
+    width: 18px;
     font-size: 16px;
+    text-align: center;
 }
+
 .activo-menu {
-
-    background-color: #0f2747 !important;
-
-    color: white !important;
-
-    font-weight: bold;
-
+    background-color: #f59e0b !important;
+    color: #111827 !important;
+    font-weight: 800;
 }
 
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sidebar-bottom button {
+    color: #94a3b8;
+}

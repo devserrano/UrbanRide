@@ -58,56 +58,47 @@ async function cargarVehiculosMantenimiento() {
 
 btnGuardarMantenimiento.addEventListener('click', async () => {
 
-    const vehiculo_id = document.getElementById(
-        'selectVehiculoMantenimiento'
-    ).value;
+    const modal = document.getElementById('modalMantenimiento');
+    const idEditando = modal.getAttribute('data-id');
 
-    const servicio = document.getElementById(
-        'selectServicioMantenimiento'
-    ).value;
-
-    const costo = document.getElementById(
-        'inputCostoMantenimiento'
-    ).value;
-
-    const estado = document.getElementById(
-        'selectEstadoMantenimiento'
-    ).value;
-
-    const observaciones = document.getElementById(
-        'inputObservacionesMantenimiento'
-    ).value.trim();
+    const vehiculo_id = document.getElementById('selectVehiculoMantenimiento').value;
+    const servicio = document.getElementById('selectServicioMantenimiento').value;
+    const costo = document.getElementById('inputCostoMantenimiento').value;
+    const estado = document.getElementById('selectEstadoMantenimiento').value;
+    const observaciones = document.getElementById('inputObservacionesMantenimiento').value.trim();
 
     if (!costo) {
         alert('El costo es obligatorio');
         return;
     }
 
+    const url = idEditando
+        ? `http://localhost:3000/api/mantenimientos/${idEditando}`
+        : 'http://localhost:3000/api/mantenimientos';
+
+    const metodo = idEditando ? 'PUT' : 'POST';
+
     try {
 
-        await fetch(
-            'http://localhost:3000/api/mantenimientos',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    vehiculo_id,
-                    servicio,
-                    costo,
-                    estado,
-                    observaciones
-                })
-            }
-        );
+        await fetch(url, {
+            method: metodo,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                vehiculo_id,
+                servicio,
+                costo,
+                estado,
+                observaciones
+            })
+        });
+
+        modal.setAttribute('data-id', '');
+        modal.classList.add('oculto');
 
         document.getElementById('inputCostoMantenimiento').value = '';
         document.getElementById('inputObservacionesMantenimiento').value = '';
-
-        document
-            .getElementById('modalMantenimiento')
-            .classList.add('oculto');
 
         obtenerMantenimientos();
 
@@ -121,7 +112,6 @@ btnGuardarMantenimiento.addEventListener('click', async () => {
     }
 
 });
-
 async function obtenerMantenimientos() {
 
     try {
@@ -169,6 +159,17 @@ async function obtenerMantenimientos() {
 
                     <td>${mantenimiento.observaciones || '-'}</td>
 
+                        <td>
+                            <button 
+                                class="btn-editar"
+                                onclick="editarMantenimiento(${mantenimiento.id})"
+                                title="Editar mantenimiento">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+                        </td>
+
                 </tr>
             `;
 
@@ -185,12 +186,61 @@ async function obtenerMantenimientos() {
 
 }
 
+async function editarMantenimiento(id) {
+
+    const respuesta = await fetch(
+        'http://localhost:3000/api/mantenimientos'
+    );
+
+    const mantenimientos = await respuesta.json();
+
+    const mantenimiento = mantenimientos.find(
+        item => item.id === id
+    );
+
+    await cargarVehiculosMantenimiento();
+
+    const modal = document.getElementById(
+        'modalMantenimiento'
+    );
+
+    modal.setAttribute('data-id', id);
+
+    document.getElementById(
+        'selectVehiculoMantenimiento'
+    ).value = mantenimiento.vehiculo_id;
+
+    document.getElementById(
+        'selectServicioMantenimiento'
+    ).value = mantenimiento.servicio;
+
+    document.getElementById(
+        'inputCostoMantenimiento'
+    ).value = mantenimiento.costo;
+
+    document.getElementById(
+        'selectEstadoMantenimiento'
+    ).value = mantenimiento.estado;
+
+    document.getElementById(
+        'inputObservacionesMantenimiento'
+    ).value = mantenimiento.observaciones || '';
+
+    modal.classList.remove('oculto');
+
+}
+
+
 function actualizarCardsMantenimiento(mantenimientos) {
 
     const total = mantenimientos.length;
 
     const pendientes = mantenimientos.filter(
-        mantenimiento => mantenimiento.estado.toLowerCase() === 'pendiente'
+        mantenimiento => mantenimiento.estado.toLowerCase() === 'pendiente'|| mantenimiento.estado.toLowerCase() === 'en proceso'
+    ).length;
+
+    const enProceso = mantenimientos.filter(
+        mantenimiento => mantenimiento.estado.toLowerCase() === 'en proceso'
     ).length;
 
     const finalizados = mantenimientos.filter(
