@@ -1,5 +1,4 @@
 
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -69,13 +68,14 @@ app.post('/api/vehiculos', async (req, res) => {
 
 });
 
+
 app.put('/api/vehiculos/:id', async (req, res) => {
 
     try {
 
         const { id } = req.params;
 
-        const { estado } = req.body;
+        const { operador, estado } = req.body;
 
         const resultado = await pool.query(
 
@@ -83,15 +83,16 @@ app.put('/api/vehiculos/:id', async (req, res) => {
 
             UPDATE vehiculos
 
-            SET estado = $1
+            SET operador = $1,
+            estado = $2
 
-            WHERE id = $2
+            WHERE id = $3
 
             RETURNING *
 
             `,
 
-            [estado, id]
+            [operador, estado, id]
 
         );
 
@@ -110,6 +111,7 @@ app.put('/api/vehiculos/:id', async (req, res) => {
     }
 
 });
+
 
 app.delete('/api/vehiculos/:id', async (req, res) => {
 
