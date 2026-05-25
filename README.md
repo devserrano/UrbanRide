@@ -1,77 +1,95 @@
-# BiciOps 🚲
+# BiciOps 
 
-Sistema de gestión operativa para flotillas de bicitaxis.
+Sistema de gestión operativa para flotillas de bicitaxis desarrollado con arquitectura Full Stack utilizando Node.js, Express, PostgreSQL y una interfaz administrativa moderna tipo SaaS Dashboard.
 
-## Características
+---
 
-- Gestión de vehículos
-- Inspecciones técnicas
-- Registro de mantenimientos
-- Dashboard operativo
-- Estados dinámicos
-- Interfaz moderna tipo SaaS
+## Descripción
 
-## Tecnologías
+BiciOps permite administrar unidades de bicitaxi, operadores, inspecciones técnicas y mantenimientos desde un panel centralizado.
 
-### Frontend
-- HTML
-- CSS
-- JavaScript
+El sistema fue diseñado para simular un entorno real de control operativo de flotillas urbanas, incorporando dashboards dinámicos, métricas visuales y gestión modular de información.
 
-### Backend
+---
+
+# Características principales
+
+## Gestión de vehículos
+- Registro de unidades
+- Edición de estados
+- Eliminación de vehículos
+- Estados operativos dinámicos
+- Paginación de registros
+- Filtros por estado
+
+## Mantenimiento
+- Registro de servicios
+- Seguimiento de mantenimientos
+- Control de costos
+- Observaciones técnicas
+- Estados visuales
+
+## Inspecciones
+- Registro de inspecciones técnicas
+- Resultados visuales
+- Seguimiento operativo
+- Indicadores de aprobación
+- Alertas de mantenimiento
+
+## Operadores
+- Visualización de operadores
+- Información de contacto
+- Asignación de unidades
+- Diseño tipo tarjetas
+
+## Dashboard operativo
+- Estadísticas dinámicas
+- Salud de flota
+- Alertas críticas
+- Últimas inspecciones
+- Mantenimientos recientes
+
+---
+
+# Tecnologías utilizadas
+
+## Frontend
+- HTML5
+- CSS3
+- JavaScript Vanilla
+- Font Awesome
+
+## Backend
 - Node.js
-- Express
+- Express.js
 
-### Base de datos
+## Base de datos
 - PostgreSQL
 
-### Contenedores
+## Contenedores
 - Docker
+- Docker Compose
 
-## Módulos
+---
 
-### Vehículos
-- Crear vehículos
-- Editar estado
-- Eliminar vehículos
+# Arquitectura del proyecto
 
-### Inspecciones
-- Registrar inspecciones
-- Resultados visuales
-- Edición de inspecciones
-
-### Mantenimiento
-- Registro de servicios
-- Seguimiento de estados
-- Costos y observaciones
-
-## Instalación
-
-### Backend
-
-```bash
-cd backend
-npm install
-npm start
-```
-
-### Frontend
-
-Abrir `frontend/index.html` con Live Server.
-
-## Estructura del proyecto
-
-```plaintext
-bicitaxi/
+```txt
+biciops/
 │
 ├── backend/
+│   ├── routes/
+│   ├── controllers/
+│   ├── database/
+│   └── server.js
+│
 ├── frontend/
 │   ├── css/
 │   ├── js/
 │   └── index.html
 │
-└── docker-compose.yml
-```
+├── docker-compose.yml
+└── README.md
 
 ## Autor
 
