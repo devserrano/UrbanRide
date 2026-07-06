@@ -1,0 +1,40 @@
+/* BOTONES TABLA */
+
+.btn-editar,
+.btn-eliminar {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    transition: 0.2s;
+
+    background-color: white;
+}
+
+.btn-editar {
+    color: #2563eb;
+    margin-right: 6px;
+}
+
+.btn-eliminar {
+    color: #dc2626;
+}
+
+.btn-editar:hover {
+    background-color: #dbeafe;
+    transform: scale(1.05);
+}
+
+.btn-eliminar:hover {
+    background-color: #fee2e2;
+    transform: scale(1.05);
+}

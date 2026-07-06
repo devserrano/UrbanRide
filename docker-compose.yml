@@ -1,0 +1,19 @@
+services:
+  database:
+    image: postgres:16
+    container_name: bicitaxi_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: bicitaxi_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # El schema con llaves foráneas se ejecuta automáticamente
+      # la primera vez que se crea el contenedor
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:
