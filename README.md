@@ -1,23 +1,17 @@
-<div align="center">
+# 🚲 BiciOps
 
-<h1>🚲 BiciOps</h1>
+**Sistema de gestión operativa para flotillas de bicitaxis**
 
-<strong>Sistema de gestión operativa para flotillas de bicitaxis</strong>
+Plataforma full-stack para administrar vehículos, operadores, inspecciones técnicas y mantenimientos, con sincronización automática del estado de cada unidad según las reglas del negocio.
 
-<p>Plataforma full-stack para administrar vehículos, operadores, inspecciones técnicas y mantenimientos, con sincronización automática del estado de cada unidad según las reglas del negocio.</p>
-
-<p>
-<img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js">
-<img src="https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white" alt="Express">
-<img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
-<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript">
-</p>
-
-</div>
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
 ---
- 
+
 ## 📋 Tabla de contenido
  
 - [Descripción](#-descripción)
